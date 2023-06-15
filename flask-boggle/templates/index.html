@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle made with Flask</title>
+</head>
+<body>
+    <h1>Boggle made with Flask</h1>
+    <div id="boggle">
+        <table>
+            {% for row in board %}
+            <tbody>
+                <tr>{% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <form id="wordForm" action="/check_word">
+            <input type="text" name="word" placeholder="Enter Word Here..." required>
+            <input type="submit" id="checkWord" name="wordSubmit" value="Check">
+        </form>
+        <h3 id="time">Time: 60</h3>
+        <p id="score">Score: {{ score }}</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="/static/boggle.js"></script>
+    <script>
+        let game = new Game("boggle", 60)
+        game.countDown()
+    </script>
+</body>
+</html>
